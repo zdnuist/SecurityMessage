@@ -9,6 +9,7 @@ import me.zdnuist.securitymessage.util.DesUtils;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -60,10 +61,10 @@ public class SmsManager {
 				bean.setType(type);
 				address = cursor.getString(cursor.getColumnIndex("address"));
 				bean.setPhoneNum(address);
-				
+
 				isEntrypt = cursor.getInt(cursor.getColumnIndex("status")) == DesUtils.ENCRYPT_STATUE;
 				bean.setEncrypt(isEntrypt);
-				
+
 				if (type == 3) {
 					// 草稿箱不进行加密
 					bean.setMessageContent(cursor.getString(cursor
@@ -160,13 +161,15 @@ public class SmsManager {
 	 * @param mContext
 	 * @return
 	 */
-	public boolean entryptMessage(Context mContext,MessageBean bean) {
+	public boolean entryptMessage(Context mContext, MessageBean bean) {
 		ContentValues cv = new ContentValues();
 		try {
 			cv.put("status", DesUtils.ENCRYPT_STATUE);
-			cv.put("body", Base64Util.encode(DesUtils.encrypt(bean.getMessageContent().getBytes(), DesUtils.ENCRYPT_PWD.getBytes())));
-			mContext.getContentResolver().update(Uri.parse("content://sms"), cv,
-					"_id" + "=?", new String[] { bean.getId() + "" });
+			cv.put("body", Base64Util.encode(DesUtils.encrypt(bean
+					.getMessageContent().getBytes(), DesUtils.ENCRYPT_PWD
+					.getBytes())));
+			mContext.getContentResolver().update(Uri.parse("content://sms"),
+					cv, "_id" + "=?", new String[] { bean.getId() + "" });
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -187,12 +190,12 @@ public class SmsManager {
 				ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI,
 				address); // address 手机号过滤
 		// Easy way to limit the query to contacts with phone numbers.
-        String selection =
-                CommonDataKinds.Contactables.HAS_PHONE_NUMBER + " = " + 1;
+		String selection = CommonDataKinds.Contactables.HAS_PHONE_NUMBER
+				+ " = " + 1;
 
-        // Sort results such that rows for the same contact stay together.
-        String sortBy = CommonDataKinds.Contactables.LOOKUP_KEY;
-        
+		// Sort results such that rows for the same contact stay together.
+		String sortBy = CommonDataKinds.Contactables.LOOKUP_KEY;
+
 		Cursor cursor = mContext.getContentResolver().query(uri_Person,
 				projection, selection, null, sortBy);
 
@@ -204,6 +207,28 @@ public class SmsManager {
 		cursor.close();
 
 		return strPerson;
+	}
+
+	public void sendMsgBySmsManager(String sms_content, String phone_number) {
+		android.telephony.SmsManager smsManager = android.telephony.SmsManager
+				.getDefault();
+		if (sms_content.length() > 70) {
+			List<String> contents = smsManager.divideMessage(sms_content);
+			for (String sms : contents) {
+				smsManager.sendTextMessage(phone_number, null, sms, null, null);
+			}
+		} else {
+			smsManager.sendTextMessage(phone_number, null, sms_content, null,
+					null);
+		}
+	}
+
+	public void sendMsgBySystem(Context context, String sms_content,
+			String phone_number) {
+		Uri uri = Uri.parse("smsto:" + phone_number);
+		Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
+		sendIntent.putExtra("sms_body", sms_content);
+		context.startActivity(sendIntent);
 	}
 
 }

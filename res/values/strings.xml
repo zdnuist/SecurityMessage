@@ -2,4 +2,6 @@
 
     <string name="app_name">安全短信箱</string>
 
+    
+    <string name="edit_msg_hint">请输入短信内容</string>
 </resources>

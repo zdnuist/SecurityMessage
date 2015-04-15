@@ -23,6 +23,8 @@ public class ContactsCursorLoader implements
 	
 	public static final String CONTACT_NAME = "contact_name";
 	
+	public static final String PHONE_NUM = "phone_num";
+	
 	public static final String TAG = "ContactsCursorLoader";
 
 	Context mContext;

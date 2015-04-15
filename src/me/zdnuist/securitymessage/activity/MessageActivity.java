@@ -80,6 +80,7 @@ public class MessageActivity extends BaseActivity implements DataListener {
 		Bundle bundle = new Bundle();
 		bundle.putInt(ContactsCursorLoader.QUERY_KEY, bean.getThreadId());
 		bundle.putString(ContactsCursorLoader.CONTACT_NAME, bean.getContactName());
+		bundle.putString(ContactsCursorLoader.PHONE_NUM, bean.getPhoneNum());
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
