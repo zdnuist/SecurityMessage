@@ -104,6 +104,10 @@ public class MessageActivity extends BaseActivity implements DataListener {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		
+		mDatas.clear();
+
+		mDatas = null;
 		EventBus.getDefault().unregister(this);
 	}
 
@@ -119,5 +123,10 @@ public class MessageActivity extends BaseActivity implements DataListener {
 	public void handlerBegin() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
 	}
 }

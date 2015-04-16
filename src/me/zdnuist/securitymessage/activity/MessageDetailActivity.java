@@ -160,6 +160,10 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 	protected void onDestroy() {
 		super.onDestroy();
 		
+		mDatas.clear();
+		
+		mDatas = null;
+		
 		EventBus.getDefault().unregister(this);
 	}
 	

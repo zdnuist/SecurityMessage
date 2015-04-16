@@ -51,6 +51,7 @@ public class SmsService extends Service {
 
 		Log.w(TAG, "smsSercive onStart");
 
+		if(intent != null)
 		parseOperating(intent);
 
 		return START_STICKY;
