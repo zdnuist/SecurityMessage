@@ -35,6 +35,8 @@ public class ContactsCursorLoader implements
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+		
+		((DataListener) mContext).handlerBegin();
 		StringBuilder selection = new StringBuilder();
 		
 		CursorLoader cursorLoader ;
@@ -139,6 +141,8 @@ public class ContactsCursorLoader implements
 	
 	public interface DataListener{
 		public <T>  void handlerDataToActivity(List<T> list);
+		
+		public void handlerBegin();
 	}
 
 }

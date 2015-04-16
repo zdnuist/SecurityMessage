@@ -2,16 +2,21 @@ package me.zdnuist.securitymessage.activity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import me.zdnuist.securitymessage.R;
 import me.zdnuist.securitymessage.bean.MessageBean;
+import me.zdnuist.securitymessage.fragment.LoadingFragment;
 import me.zdnuist.securitymessage.loader.ContactsCursorLoader;
 import me.zdnuist.securitymessage.loader.ContactsCursorLoader.DataListener;
 import me.zdnuist.securitymessage.manager.SmsManager;
 import me.zdnuist.securitymessage.util.DateUtils;
 import android.app.ActionBar;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +28,8 @@ import com.joanzapata.android.QuickAdapter;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
+
+import de.greenrobot.event.EventBus;
 
 public class MessageDetailActivity extends BaseActivity implements DataListener {
 
@@ -44,11 +51,15 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 	int threadId;
 	String title;
 	String phone_number;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState, R.layout.activity_messagedetail);
-
+		
+		EventBus.getDefault().register(this);
+		
 		Bundle bundle = getIntent().getExtras();
 		threadId = bundle.getInt(ContactsCursorLoader.QUERY_KEY);
 
@@ -62,7 +73,7 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 		bar.setTitle(title);
 
 		initDatas();
-
+		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -115,6 +126,17 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 		};
 		// 设置适配器
 		mListView.setAdapter(mAdapter);
+		
+		dimissLoading();
+		
+		Log.w(TAG, "handlerDataToActivity finish");
+	}
+	
+	@Override
+	protected void onPostResume() {
+		super.onPostResume();
+		
+		Log.w(TAG, "onPostResume finish");
 	}
 
 	private void initDatas() {
@@ -132,6 +154,24 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 		String sms_content = editMsg.getText().toString();
 		SmsManager.getInstance().sendMsgBySystem(this,sms_content,phone_number);
 		editMsg.setText("");
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		
+		EventBus.getDefault().unregister(this);
+	}
+	
+	public void onEventBackgroundThread(String event){
+		if(event != null && "onFinish".equals(event)){
+			dimissLoading();
+		}
+	}
+
+	@Override
+	public void handlerBegin() {
+		showLoading();
 	}
 
 }

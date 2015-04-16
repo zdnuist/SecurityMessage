@@ -34,6 +34,8 @@ public class MessageActivity extends BaseActivity implements DataListener {
 
 	@ViewInject(R.id.lv_messages)
 	ListView mListView;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class MessageActivity extends BaseActivity implements DataListener {
 	}
 
 	private void initDatas() {
+		
+		showLoading();
 		// mDatas = SmsManager.getInstance().queryMessages(this, null);
 		ContactsCursorLoader loaderCallbacks = new ContactsCursorLoader(this);
 
@@ -79,7 +83,8 @@ public class MessageActivity extends BaseActivity implements DataListener {
 		};
 		// 设置适配器
 		mListView.setAdapter(mAdapter);
-
+		
+		dimissLoading();
 	}
 
 	@OnItemClick(R.id.lv_messages)
@@ -108,5 +113,11 @@ public class MessageActivity extends BaseActivity implements DataListener {
 					this);
 			getLoaderManager().restartLoader(0, null, loaderCallbacks);
 		}
+	}
+
+	@Override
+	public void handlerBegin() {
+		// TODO Auto-generated method stub
+		
 	}
 }
