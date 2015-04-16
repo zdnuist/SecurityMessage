@@ -25,15 +25,15 @@ public class SmsObserver extends ContentObserver{
 		// TODO Auto-generated method stub
 		super.onChange(selfChange, uri);
 		
-		if(count == 0){
+//		if(count == 0){
 			Log.w(TAG, "selfChange:" + selfChange + ",Uri:" + uri);
-		}
-		
-		if(count == 2){
-			count = 0;
-		}else{
-			count ++;
-		}
+//		}
+//		
+//		if(count == 2){
+//			count = 0;
+//		}else{
+//			count ++;
+//		}
 		
 		this.handler.obtainMessage().sendToTarget();
 	}

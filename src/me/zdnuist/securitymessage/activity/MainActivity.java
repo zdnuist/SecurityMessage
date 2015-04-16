@@ -1,6 +1,7 @@
 package me.zdnuist.securitymessage.activity;
 
 import me.zdnuist.securitymessage.R;
+import me.zdnuist.securitymessage.manager.MessageNotifycationManager;
 import me.zdnuist.securitymessage.manager.SmsManager;
 import android.app.Activity;
 import android.os.Bundle;

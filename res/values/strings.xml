@@ -4,4 +4,6 @@
 
     
     <string name="edit_msg_hint">请输入短信内容</string>
+    
+    <string name="msg_decode">短信解码</string>
 </resources>

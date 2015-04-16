@@ -176,6 +176,29 @@ public class SmsManager {
 		}
 		return true;
 	}
+	
+	/**
+	 * 解密
+	 * @param mContext
+	 * @param id
+	 * @param body
+	 * @return
+	 */
+	public boolean decodeMessage(Context mContext, int id,String body){
+		ContentValues cv = new ContentValues();
+		try {
+			cv.put("status", DesUtils.NONE_ENCRYPT_STATUE);
+			cv.put("body", new String(DesUtils.decrypt(
+					Base64Util.decode(body),
+					DesUtils.ENCRYPT_PWD.getBytes())));
+			mContext.getContentResolver().update(Uri.parse("content://sms"),
+					cv, "_id" + "=?", new String[] { id + "" });
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 
 	// 通过address手机号关联Contacts联系人的显示名字
 	public String getContactNameFromPerson(Context mContext, String address) {

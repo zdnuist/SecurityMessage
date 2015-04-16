@@ -131,6 +131,7 @@ public class MessageDetailActivity extends BaseActivity implements DataListener 
 		}
 		String sms_content = editMsg.getText().toString();
 		SmsManager.getInstance().sendMsgBySystem(this,sms_content,phone_number);
+		editMsg.setText("");
 	}
 
 }

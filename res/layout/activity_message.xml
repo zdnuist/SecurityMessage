@@ -6,10 +6,11 @@
     android:background="@color/avtivity_bg"
     >
 
+    
     <ListView
         android:id="@+id/lv_messages"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:divider="#02F78E" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/devide_line" />
 
 </RelativeLayout>
