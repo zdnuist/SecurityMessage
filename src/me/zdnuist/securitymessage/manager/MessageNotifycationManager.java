@@ -74,7 +74,7 @@ public class MessageNotifycationManager {
 
 		notification = mBuilder.build();
 		notification.contentView = remoteViews;
-		notification.flags = Notification.FLAG_NO_CLEAR;
+		notification.flags = Notification.FLAG_AUTO_CANCEL;
 		mNotificationManager.notify(NOTIFYCATION_TIP_ID, notification);
 	}
 
