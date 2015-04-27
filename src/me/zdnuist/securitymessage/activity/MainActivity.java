@@ -1,8 +1,6 @@
 package me.zdnuist.securitymessage.activity;
 
 import me.zdnuist.securitymessage.R;
-import me.zdnuist.securitymessage.manager.SmsManager;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;

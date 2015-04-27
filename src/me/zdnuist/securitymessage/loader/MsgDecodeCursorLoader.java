@@ -1,8 +1,6 @@
 package me.zdnuist.securitymessage.loader;
 
-import me.zdnuist.securitymessage.bean.MessageBean;
 import me.zdnuist.securitymessage.manager.SmsManager;
-import me.zdnuist.securitymessage.util.Base64Util;
 import me.zdnuist.securitymessage.util.DesUtils;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;

@@ -2,19 +2,15 @@ package me.zdnuist.securitymessage.activity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import me.zdnuist.securitymessage.R;
 import me.zdnuist.securitymessage.bean.MessageBean;
-import me.zdnuist.securitymessage.fragment.LoadingFragment;
 import me.zdnuist.securitymessage.loader.ContactsCursorLoader;
 import me.zdnuist.securitymessage.loader.ContactsCursorLoader.DataListener;
 import me.zdnuist.securitymessage.manager.SmsManager;
 import me.zdnuist.securitymessage.util.DateUtils;
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
