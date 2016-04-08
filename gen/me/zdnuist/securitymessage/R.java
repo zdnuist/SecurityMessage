@@ -35,40 +35,43 @@ containing a value of this type.
         public static final int shadow=0x7f020005;
     }
     public static final class id {
+        public static final int app_logo=0x7f070005;
         public static final int bt_send=0x7f070003;
-        public static final int chat_from_content=0x7f070005;
-        public static final int chat_from_time=0x7f070006;
-        public static final int chat_send_content=0x7f070013;
-        public static final int chat_send_time=0x7f070014;
+        public static final int chat_from_content=0x7f070007;
+        public static final int chat_from_time=0x7f070008;
+        public static final int chat_send_content=0x7f070015;
+        public static final int chat_send_time=0x7f070016;
         public static final int et_msg=0x7f070002;
-        public static final int indication=0x7f070007;
+        public static final int indication=0x7f070009;
         public static final int ll_edit=0x7f070001;
-        public static final int loadView=0x7f07000a;
+        public static final int loadView=0x7f07000c;
         public static final int lv_messages=0x7f070000;
         public static final int lv_messages_detail=0x7f070004;
-        public static final int notif_cancel=0x7f070011;
-        public static final int notif_icon=0x7f07000f;
-        public static final int notif_reset=0x7f070012;
-        public static final int notif_title=0x7f070010;
-        public static final int open=0x7f070015;
-        public static final int open2=0x7f070016;
-        public static final int promptTV=0x7f070008;
-        public static final int shapeLoadingView=0x7f070009;
-        public static final int tv_contactname=0x7f07000b;
-        public static final int tv_content=0x7f07000c;
-        public static final int tv_phone=0x7f07000e;
-        public static final int tv_time=0x7f07000d;
+        public static final int notif_cancel=0x7f070013;
+        public static final int notif_icon=0x7f070011;
+        public static final int notif_reset=0x7f070014;
+        public static final int notif_title=0x7f070012;
+        public static final int open=0x7f070017;
+        public static final int open2=0x7f070018;
+        public static final int promptTV=0x7f07000a;
+        public static final int shapeLoadingView=0x7f07000b;
+        public static final int splash_container=0x7f070006;
+        public static final int tv_contactname=0x7f07000d;
+        public static final int tv_content=0x7f07000e;
+        public static final int tv_phone=0x7f070010;
+        public static final int tv_time=0x7f07000f;
     }
     public static final class layout {
         public static final int activity_message=0x7f030000;
         public static final int activity_messagedetail=0x7f030001;
-        public static final int from_msg=0x7f030002;
-        public static final int load_view=0x7f030003;
-        public static final int loding=0x7f030004;
-        public static final int message_list=0x7f030005;
-        public static final int notification=0x7f030006;
-        public static final int send_msg=0x7f030007;
-        public static final int test=0x7f030008;
+        public static final int activity_splash=0x7f030002;
+        public static final int from_msg=0x7f030003;
+        public static final int load_view=0x7f030004;
+        public static final int loding=0x7f030005;
+        public static final int message_list=0x7f030006;
+        public static final int notification=0x7f030007;
+        public static final int send_msg=0x7f030008;
+        public static final int test=0x7f030009;
     }
     public static final class string {
         public static final int app_name=0x7f050000;
