@@ -101,12 +101,12 @@ public class ContactsCursorLoader implements
 				isEntrypt = cursor.getInt(cursor.getColumnIndex("status")) == DesUtils.ENCRYPT_STATUE;
 				bean.setEncrypt(isEntrypt);
 				
-				if (type == 3) {
-					// 草稿箱不进行加密
-					bean.setMessageContent(cursor.getString(cursor
-							.getColumnIndex("body")));
-
-				} else {
+//				if (type == 3) {
+//					// 草稿箱不进行加密
+//					bean.setMessageContent(cursor.getString(cursor
+//							.getColumnIndex("body")));
+//
+//				} else {
 					if (isEntrypt) {
 						postMessageContent = cursor.getString(cursor
 								.getColumnIndex("body"));
@@ -121,7 +121,7 @@ public class ContactsCursorLoader implements
 						boolean isSuccess = SmsManager.getInstance().entryptMessage(mContext, bean);
 						Log.d(TAG, "isSuccess:" + isSuccess);
 					}
-				}
+//				}
 				contactName = SmsManager.getInstance().getContactNameFromPerson(mContext, address);
 				bean.setContactName(contactName == null ? address : contactName);
 				beanList.add(bean);

@@ -22,7 +22,7 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
